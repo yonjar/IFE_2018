@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>No.1</title>
+	<style>
+		.center{
+			text-align: center;
+		}
+
+		.sth{
+			position: relative;
+			margin: 10px;
+			/* padding: 10px; */
+			font-size: 36px;
+		}
+
+		.sth:before{
+			content: "";
+			position: absolute;
+			top: 100%;
+			height: 3px;
+			width: 100%;
+			background-color: #6f6fff;
+			transform: scaleX(0); /* 使用scaleX或rotateY都能让线从中间展开 */
+			/* transform: rotateY(90deg); */
+			transition: all ease-in .3s;
+			-moz-transition: all ease-in .3s;	/* Firefox 4 */
+			-webkit-transition: all ease-in .3s;	/* Safari 和 Chrome */
+			-o-transition: all ease-in .3s;	/* Opera */
+		}
+
+		.sth.active{
+			color: #6f6fff;
+		}
+
+		.sth.active:before{
+			transform: scaleX(1);
+			/* transform: rotateY(0); */
+		}
+	</style>
+</head>
+<body>
+	<div class="center">
+		<span class="sth">任务描述</span>
+	</div>
+	<div class="center">
+		<button id="switch-btn">switch</button>
+	</div>
+
+	<script>
+		document.querySelector('#switch-btn').addEventListener('click', (e) => {
+			document.querySelector('.sth').classList.toggle('active');
+		}, false);
+	</script>
+</body>
+</html>

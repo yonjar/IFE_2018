@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+			margin: 0;
+			padding: 0;
+			height: 100vh;
+			width: 100vw;
+		}
+
+		#img-slider{
+			position: relative;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+		}
+
+		.main{
+			width: 100%;
+			height: 100%;
+		}
+
+		.main img{
+			position: absolute;
+			min-width: 100%;
+		}
+
+		.footer{
+			position: fixed;
+			bottom: 0;
+			padding: 0;
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+			list-style: none;
+			z-index: 3;
+		}
+
+		.footer li{
+			width: 15%;
+			height: 200px;
+			overflow: hidden;
+		}
+
+		.footer li img{
+			width: 100%;
+			filter: brightness(0.6);
+		}
+
+		.footer li img:hover{
+			width: 100%;
+			filter: brightness(1);
+		}
+
+		.img-1.active{
+			animation: .5s ease-out img-animation-1;
+			z-index: 2;
+		}
+		.img-2.active{
+			animation: .5s ease-out img-animation-2;
+			z-index: 2;
+		}
+		.img-3.active{
+			animation: .5s ease-in img-animation-3;
+			z-index: 2;
+		}
+		.img-4.active{
+			animation: .5s ease-out img-animation-4;
+			z-index: 2;
+		}
+		.img-5.active{
+			animation: .5s ease-in-out img-animation-5;
+			z-index: 2;
+		}
+
+		@keyframes img-animation-1 {
+			0%{left: -500px;}
+			100%{left: 0;}
+		}
+
+		@keyframes img-animation-2 {
+			0%{top: 350px;}
+			100%{top: 0;}
+		}
+
+		@keyframes img-animation-3 {
+			0%{transform: scale(0.1);}
+			100%{transform: scale(1);}
+		}
+
+		@keyframes img-animation-4 {
+			0%{transform: scale(2);}
+			100%{transform: scale(1);}
+		}
+
+		@keyframes img-animation-5 {
+			0%{transform: scale(0.1) rotate(-360deg);}
+			100%{transform: scale(1) rotate(0);}
+		}
+	</style>
+</head>
+<body>
+	<div id="img-slider">
+		<div class="main">
+			<img class="img-1" src="https://placem.at/places?w=1280&h=720&random=2" alt="">
+			<img class="img-2" src="https://placem.at/places?w=1280&h=720&random=3" alt="">
+			<img class="img-3" src="https://placem.at/places?w=1280&h=720&random=6" alt="">
+			<img class="img-4" src="https://placem.at/places?w=1280&h=720&random=7" alt="">
+			<img class="img-5" src="https://placem.at/places?w=1280&h=720&random=9" alt="">
+		</div>
+		<ul class="footer">
+			<li><img data-img="img-1" src="https://placem.at/places?w=1280&h=720&random=2" alt=""></li>
+			<li><img data-img="img-2" src="https://placem.at/places?w=1280&h=720&random=3" alt=""></li>
+			<li><img data-img="img-3" src="https://placem.at/places?w=1280&h=720&random=6" alt=""></li>
+			<li><img data-img="img-4" src="https://placem.at/places?w=1280&h=720&random=7" alt=""></li>
+			<li><img data-img="img-5" src="https://placem.at/places?w=1280&h=720&random=9" alt=""></li>
+		</ul>
+	</div>
+
+	<script>
+		let beforeOne = null; //上一个激活的图片
+		document.querySelector('.footer').addEventListener('click', function (e) {
+			if (e.target.tagName.toUpperCase() === 'IMG') {
+				if (beforeOne) { beforeOne.classList.toggle('active'); }
+				beforeOne = document.querySelector('.main .' + e.target.dataset.img);
+				beforeOne.classList.toggle('active');
+			}
+		}, false);
+	</script>
+</body>
+</html>

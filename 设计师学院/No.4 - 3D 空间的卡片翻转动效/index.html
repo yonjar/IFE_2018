@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.container{
+			-webkit-perspective: 1200px; 
+			-moz-perspective: 1200px; 
+			-ms-perspective: 1200px; 
+			-o-perspective: 1200px; 
+			perspective: 1200px; /* perspective 属性指定了观察者与z=0平面的距离，使具有三维位置变换的元素产生透视效果。z>0的三维元素比正常大，而z<0时则比正常小，大小程度由该属性的值决定。 */
+		}
+		.card{
+			width: 250px;
+		    height: 350px;
+			margin: 50px auto;
+			-webkit-transform-style: preserve-3d; 
+			-moz-transform-style: preserve-3d; 
+			-ms-transform-style: preserve-3d; 
+			-o-transform-style: preserve-3d; 
+			transform-style: preserve-3d; /* transform-style属性确定元素的子元素是否位于3D空间中，还是在该元素所在的平面内被扁平化。 */
+		}
+
+		.side{
+			position: absolute;
+			transition: all ease .5s;
+		}
+
+		.reverse{
+			transform: rotateY(180deg);
+		}
+
+		.card:hover .front{
+			transform: rotateY(180deg);
+		}
+
+		.card:hover .reverse{
+			transform: rotateY(360deg);
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="card">
+			<div class="side reverse"><img src="https://ws1.sinaimg.cn/large/aa2135eagy1fr2186hs3mj206y09qt9f.jpg" alt=""></div>
+			<div class="side front"><img src="https://ws1.sinaimg.cn/large/aa2135eagy1fr217yq779j206y09qt9n.jpg" alt=""></div>
+		</div>
+	</div>
+</body>
+</html>
