@@ -86,12 +86,26 @@
                 transition: all .2s ease-in;
                 transform-origin: left;
             }
+            .form__input:before {
+                position: absolute;
+                bottom: 0;
+                content: "";
+                width: 20px;
+                height: 2px;
+                background: #2196f3;
+                transition: all .2s ease;
+            }
             .form__label__content {
                 position: absolute;
             }
-            .form__input:focus ~ .form__label{
+            .form__input:focus ~ .form__label,
+            .form__label__filled{
                 transform: scale(0.8) translateY(-20px);
             }
+            .form__input:focus:before {
+                width: 100%;
+            }
+
             .btn {
                 width: 100%;
                 display: inline-block;
@@ -141,4 +155,21 @@
         </section>
     </body>
     <script src="https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/jquery/jquery-1.10.2.min_65682a2.js"></script>
+    <script>
+        $('.form__input').blur(function(){
+            if (this.value.length > 0) {
+                $(this).next().addClass('form__label__filled');
+            }
+            else {
+                $(this).next().removeClass('form__label__filled');
+            }
+
+            if ($('#email').val().length > 0 && $('#password').val().length > 0) {
+                $('.form__wrapper__submit').addClass('animated');
+            }
+            else {
+                $('.form__wrapper__submit').removeClass('animated');
+            }
+        })
+    </script>
 </html>
